@@ -10,7 +10,7 @@ namespace MoodAnalyserAssignment
     {
         public static string MoodAnalyse(string message)
         {
-            if(message.Contains("Sad"))
+            if(message.Contains("Sad") || message.Contains("sad"))
             {
                 return "Sad";
             }
