@@ -4,7 +4,7 @@
     {
         public static void Main(string[] args)
         {
-            MoodAnalyser analyser = new MoodAnalyser();
+            //MoodAnalyser analyser = new MoodAnalyser();
             //analyser.MoodAnalyse("Happy");
         }
     }
