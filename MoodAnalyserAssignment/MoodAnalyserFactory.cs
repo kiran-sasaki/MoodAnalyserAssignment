@@ -10,21 +10,20 @@ namespace MoodAnalyserAssignment
 {
     public class MoodAnalyserFactory
     {
-        public static object CreateMoodAnalyse(string className, string constructorName)
+        public static object CreateMoodAnalyse(string className, string constructorName,string message)
         {
-            string pattern = @"." + constructorName + "$";
-            Match result = Regex.Match(className, pattern);
-            if(result.Success)
+           Type type = typeof(MoodAnalyser);
+            if (type.Name.Equals(className) || type.FullName.Equals(className))
             {
-                try
+               if(type.Name.Equals(constructorName))
+               {
+                    ConstructorInfo ctor = type.GetConstructor(new[] { typeof(string) });
+                    object instance = ctor.Invoke(new object[] { "Happy" });
+                    return instance;
+               }
+                else
                 {
-                    Assembly executting= Assembly.GetExecutingAssembly();
-                    Type MoodAnalyseType= executting.GetType(className);
-                    return Activator.CreateInstance(MoodAnalyseType);
-                }
-                catch (ArgumentNullException)
-                {
-                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class Not Found");
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "Constructor is not found");
                 }
             }
             else
