@@ -66,5 +66,43 @@ namespace MoodAnalyserTest
                 Console.WriteLine("Mood should not be Empty", e.Message);
             }
         }
+        //UC4.1
+        [TestMethod]
+        public void Given_MoodAnalyser_ClassName_Should_Return_MoodAnalyser_Object()
+        {
+            object expected = new MoodAnalyser();
+            object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserAssignment.MoodAnalyser", "MoodAnalyser");
+            expected.Equals(obj);
+        }
+        //UC4.2
+        [TestMethod]
+        public void Given_MoodAnalyser_ClassName_ImproperShould_Throw_MoodAnalyserException()
+        {
+            try
+            {
+                object expected = new MoodAnalyser();
+                object obj = MoodAnalyserFactory.CreateMoodAnalyse("erMoodAnalyserAssignment.MoodAnalys", "MoodAnalyser");
+                expected.Equals(obj);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        //UC4.3
+        [TestMethod]
+        public void Given_MoodAnalyser_Constructor_Name_Improper_Should_Throw_MoodAnalyserException()
+        {
+            try
+            {
+                object expected = new MoodAnalyser();
+                object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserAssignment.AnalyseMood", "MoodAnaly");
+                expected.Equals(obj);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
     }
 }
