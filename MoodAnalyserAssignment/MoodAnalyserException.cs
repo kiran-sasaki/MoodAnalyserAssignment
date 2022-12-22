@@ -8,9 +8,14 @@ namespace MoodAnalyserAssignment
 {
     public class MoodAnalyserException : Exception
     {
-        public MoodAnalyserException(string message) : base(message)
+        public enum ExceptionType
         {
-
+            EMPTY_MESSAGE,NULL_MESSAGE,NO_SUCH_FIELD_NO_SUCH_METHOD,NO_SUCH_CLASS,OBJECT_CREATION_ISSUE
+        }
+        private readonly ExceptionType Type;
+        public MoodAnalyserException(ExceptionType type, string message) : base(message)
+        {
+            this.Type = type;
         }
     }
 }
